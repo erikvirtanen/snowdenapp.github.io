@@ -1,94 +1,94 @@
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <meta charset="utf-8">
-    <title>SnowdenApp.com</title>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-  </head>
-  <body style="margin-top: 60px">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SnowdenApp.com</title>
+  <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+</head>
+<body style="margin-top: 60px">
 
-    <div id="content" class="container">
+  <div id="content" class="container">
+  </div>
+  
+  <script type="text/x-handlebars-template" id="logon_template">
+  
+    <div class="row">
+      <div class="span4">
+        <p><button class="btn">Sign Up</button> 
+        or <button class="btn">Login</button></p>
+      </div>
+      <div class="span8">
+        <form id="#logon-form" target="#contacts" class="form-inline">
+          <label>Passphrase</label>
+          <input type="text" class="search-query" id="passphrase_input" />
+          <input type="submit" class="btn" value="Enter" />
+        </form>
+        
+        <form class="form-inline">
+          <label>Create a Passphrase</label>
+          <input type="text" class="search-query" id="passphrase_created" />
+          <button id="regenerate-passphrase" class="btn">
+            <i class="icon-camera"></i>
+          </button>
+        </form>
+        
+        <img src="http://placehold.it/563x690">
+      </div>
     </div>
     
-    <script type="text/x-handlebars-template" id="logon_template">
+  </script>
+  
+  <script type="text/x-handlebars-template" id="contacts_template">
+    <ul>
+        {{#each contacts}}
+            <li><a href="#conversation/{{public_key}}">{{public_key}}</a></li>
+        {{/each}}
+    </ul>
+  </script>
+  
+  <script type="text/x-handlebars-template" id="show_conversation_template">
+    <p>All Messages from {{public_key}}</p>
+    <p>Current Private Key {{private_key}}</p>
+    <p>Private Key Hash {{private_key_hash}}</p>
     
-      <div class="row">
-        <div class="span4">
-          <p><button class="btn">Sign Up</button> 
-          or <button class="btn">Login</button></p>
-        </div>
-        <div class="span8">
-          <form id="#logon-form" target="#contacts" class="form-inline">
-            <label>Passphrase</label>
-            <input type="text" class="search-query" id="passphrase_input" />
-            <input type="submit" class="btn" value="Enter" />
-          </form>
-          
-          <form class="form-inline">
-            <label>Create a Passphrase</label>
-            <input type="text" class="search-query" id="passphrase_created" />
-            <button id="regenerate-passphrase" class="btn">
-              <i class="icon-camera"></i>
-            </button>
-          </form>
-          
-          <img src="http://placehold.it/563x690">
-        </div>
-      </div>
-      
-    </script>
+    <form class="form-inline">
+      <label>Send Message</label>
+      <textarea id="the-message" name="the-message">This is a test message.</textarea>
+      <button id="send-message" class="btn">
+        <i class="icon-camera"></i>
+      </button>
+    </form>
     
-    <script type="text/x-handlebars-template" id="contacts_template">
-      <ul>
-          {{#each contacts}}
-              <li><a href="#conversation/{{public_key}}">{{public_key}}</a></li>
-          {{/each}}
-      </ul>
-    </script>
-    
-    <script type="text/x-handlebars-template" id="show_conversation_template">
-      <p>All Messages from {{public_key}}</p>
-      <p>Current Private Key {{private_key}}</p>
-      <p>Private Key Hash {{private_key_hash}}</p>
-      
-      <form class="form-inline">
-        <label>Send Message</label>
-        <textarea id="the-message" name="the-message">This is a test message.</textarea>
-        <button id="send-message" class="btn">
-          <i class="icon-camera"></i>
-        </button>
-      </form>
-      
-      <p id="encrypted-message">Message goes here</p>
-    </script>
-    
-    <!-- Javascript for backbone and client side stuff -->
-    <script src="lib/jquery-2.0.0.min.js"></script>
-    <script src="lib/underscore-min.js"></script>
-    <script src="lib/backbone-min.js"></script>
-    <script src="lib/handlebars.js"></script>
-    
-    <!-- Elliptic curve Diffie–Hellman (ECDH) javascript -->
-    <script src="ecdh/jsbn.js"></script>
-    <script src="ecdh/jsbn2.js"></script>
-    <script src="ecdh/prng4.js"></script>
-    <script src="ecdh/rng.js"></script>
-    <script src="ecdh/ec.js"></script>
-    <script src="ecdh/sec.js"></script>
-    <script src="ecdh/aes.js"></script>
-    <script src="ecdh/mnemonic.js"></script>
-    <script src="ecdh/crypto.js"></script>
-    <script src="ecdh/sha256.js"></script>
-    <script src="ecdh/ecdh.js"></script>
-    
-    <!-- Backbone model, routes and views -->
-    <script src="app/app.js"></script>
-    <script src="app/models.js"></script>
-    <script src="app/views.js"></script>
-    <script src="app/routes.js"></script>
-    
-    <script>
-      App.initialize();
-    </script>
-  </body>
-  </html>
+    <p id="encrypted-message">Message goes here</p>
+  </script>
+  
+  <!-- Javascript for backbone and client side stuff -->
+  <script src="lib/jquery-2.0.0.min.js"></script>
+  <script src="lib/underscore-min.js"></script>
+  <script src="lib/backbone-min.js"></script>
+  <script src="lib/handlebars.js"></script>
+  
+  <!-- Elliptic curve Diffie–Hellman (ECDH) javascript -->
+  <script src="ecdh/jsbn.js"></script>
+  <script src="ecdh/jsbn2.js"></script>
+  <script src="ecdh/prng4.js"></script>
+  <script src="ecdh/rng.js"></script>
+  <script src="ecdh/ec.js"></script>
+  <script src="ecdh/sec.js"></script>
+  <script src="ecdh/aes.js"></script>
+  <script src="ecdh/mnemonic.js"></script>
+  <script src="ecdh/crypto.js"></script>
+  <script src="ecdh/sha256.js"></script>
+  <script src="ecdh/ecdh.js"></script>
+  
+  <!-- Backbone model, routes and views -->
+  <script src="app/app.js"></script>
+  <script src="app/models.js"></script>
+  <script src="app/views.js"></script>
+  <script src="app/routes.js"></script>
+  
+  <script>
+    App.initialize();
+  </script>
+</body>
+</html>
