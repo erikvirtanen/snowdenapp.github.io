@@ -1,4 +1,4 @@
 snowdenapp.github.io
 ====================
 
-Secure Public Kex Messaging.
+Secure Public Key Messaging.
