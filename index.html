@@ -49,6 +49,7 @@
     <script type="text/x-handlebars-template" id="show_conversation_template">
       <p>All Messages from {{public_key}}</p>
       <p>Current Private Key {{private_key}}</p>
+      <p>Private Key Hash {{private_key_hash}}</p>
       
       <form class="form-inline">
         <label>Send Message</label>
@@ -76,6 +77,8 @@
     <script src="ecdh/sec.js"></script>
     <script src="ecdh/aes.js"></script>
     <script src="ecdh/mnemonic.js"></script>
+    <script src="ecdh/crypto.js"></script>
+    <script src="ecdh/sha256.js"></script>
     <script src="ecdh/ecdh.js"></script>
     
     <!-- Backbone model, routes and views -->
