@@ -16,9 +16,9 @@ App.Routers.Navigation = Backbone.Router.extend({
     view.render();
   },
 
-  showConversation: function() {
+  showConversation: function(id) {
     var view = new App.Views.ShowConversation();
-    view.render();
+    view.render(id);
   },
 
 });
