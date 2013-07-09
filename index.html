@@ -18,7 +18,7 @@
           or <button class="btn">Login</button></p>
         </div>
         <div class="span8">
-          <form id="#logon-form" class="form-inline">
+          <form id="#logon-form" target="#contacts" class="form-inline">
             <label>Passphrase</label>
             <input type="text" class="search-query" id="passphrase_input" />
             <input type="submit" class="btn" value="Enter" />
@@ -48,6 +48,17 @@
     
     <script type="text/x-handlebars-template" id="show_conversation_template">
       <p>All Messages from {{public_key}}</p>
+      <p>Current Private Key {{private_key}}</p>
+      
+      <form class="form-inline">
+        <label>Send Message</label>
+        <textarea id="the-message" name="the-message">This is a test message.</textarea>
+        <button id="send-message" class="btn">
+          <i class="icon-camera"></i>
+        </button>
+      </form>
+      
+      <p id="encrypted-message">Message goes here</p>
     </script>
     
     <!-- Javascript for backbone and client side stuff -->
