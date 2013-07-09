@@ -18,8 +18,8 @@ App.Models.PrivateKey = Backbone.Model.extend({
   
   regenerate : function() {
     var pk = ECDH.generate_private_key();
-    this.set("private_key", pk); 
-    this.set("public_key", ECDH.compressed_public(pk)); 
+    this.set("private_key", pk.toString()); 
+    this.set("public_key", ECDH.compressed_public(pk.toString())); 
   }
 });
 App.PrivateKeySingleton = new App.Models.PrivateKey();
