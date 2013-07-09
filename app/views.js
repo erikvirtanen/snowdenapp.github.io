@@ -51,6 +51,7 @@ App.Views.ShowConversation = Backbone.View.extend({
       {
           public_key: id,
           private_key: App.PrivateKeySingleton.get("private_key"),
+          private_key_hash: App.PrivateKeySingleton.get("private_key_hash"),
       }
     ));
     this.show();
