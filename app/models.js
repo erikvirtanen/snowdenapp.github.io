@@ -10,6 +10,7 @@ App.Models.PrivateKey = Backbone.Model.extend({
   setPrivateKey : function(privKey) {
     this.set("private_key", privKey.toString()); 
     this.set("public_key", ECDH.compressed_public(privKey.toString())); 
+    this.set("private_key_hash", Crypto.SHA256(privKey.toString())); 
   },
   
   regenerate : function() {
