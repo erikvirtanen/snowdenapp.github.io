@@ -1,7 +1,28 @@
 App.Models.Contact = Backbone.Model.extend();
 
-App.Models.ContactList = Backbone.Collection.extend({
-  model: App.Models.Contact
+App.Collections.ContactList = Backbone.Collection.extend({
+  model: App.Models.Contact,
+  
+  url: function() {
+    return App.base_url + '/contacts/' 
+      + App.PrivateKeySingleton.get("private_key_hash") + '.json';
+  }
+});
+
+App.Models.Message = Backbone.Model.extend();
+
+App.Collections.MessageList = Backbone.Collection.extend({
+  model: App.Models.Message,
+  
+  initialize: function(id) {
+    this.id = id;
+  },
+    
+  url: function() {
+    return App.base_url + '/messages/' 
+      + this.id + '/'
+      + App.PrivateKeySingleton.get("public_key") + '.json';
+  }
 });
 
 // This is a singleton class. There can be only one.
@@ -15,7 +36,7 @@ App.Models.PrivateKey = Backbone.Model.extend({
   
   regenerate : function() {
     var pk = ECDH.generate_private_key();
-    this.set_private_key(pk.toString()); 
+    this.setPrivateKey(pk.toString()); 
   }
 });
 App.PrivateKeySingleton = new App.Models.PrivateKey();
