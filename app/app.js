@@ -5,7 +5,7 @@ window.App = {
   Routers: {},
   
 
-  base_url: 'http://kriptapp.herokuapp.com/',
+  base_url: 'http://178.79.174.142',
 
   auth_token: function() {
     return $.cookie('auth_token');
