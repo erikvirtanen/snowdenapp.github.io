@@ -8,17 +8,7 @@ App.Views.ContactsList = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.collection = new App.Models.ContactList([
-      {
-          public_key: '02ABBF78EA418B278229ECC4572476DD9E'
-      },
-      {
-          public_key: '02157C6A821C953F47FD1E738AA3C3E3F2'
-      },
-      {
-          public_key: '02F03335D64F39DC1204F933C09780F9D9'
-      }
-    ]);
+    this.collection = new App.Collections.ContactList();
     this.collection.on('reset', this.render, this);
   },
 
@@ -39,6 +29,11 @@ App.Views.ShowConversation = Backbone.View.extend({
     var template = Handlebars.compile(source);
 
     return template(context);
+  },
+
+  initialize: function(id) {
+    this.collection = new App.Collections.MessageList(id.id);
+    this.collection.on('reset', this.render, this);
   },
 
   events: {
