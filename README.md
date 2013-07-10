@@ -1,4 +1,4 @@
-snowdenapp.github.io
-====================
+Snowden
+=======
 
 Secure Public Key Messaging.
