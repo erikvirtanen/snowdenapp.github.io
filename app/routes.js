@@ -2,6 +2,7 @@ App.Routers.Navigation = Backbone.Router.extend({
 
   routes: {
     'contacts'             : 'contacts',
+    'messages'             : 'messages',
     'conversation/:id'     : 'showConversation',
     '*path'                : 'defaultRoute'
   },
@@ -13,12 +14,12 @@ App.Routers.Navigation = Backbone.Router.extend({
 
   contacts: function() {
     var view = new App.Views.ContactsList();
-    view.render();
+    view.collection.fetch({ reset: true });
   },
 
   showConversation: function(id) {
-    var view = new App.Views.ShowConversation();
-    view.render(id);
+    var view = new App.Views.ShowConversation({ id: id });
+    view.collection.fetch({ reset: true });
   },
 
 });
