@@ -9,7 +9,11 @@ App.Collections.ContactList = Backbone.Collection.extend({
   }
 });
 
-App.Models.Message = Backbone.Model.extend();
+App.Models.Message = Backbone.Model.extend({
+  url: function() {
+    return App.base_url + '/messages/';
+  }
+});
 
 App.Collections.MessageList = Backbone.Collection.extend({
   model: App.Models.Message,
