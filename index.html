@@ -51,7 +51,7 @@
     
     <ul id="message-list">
         {{#each messages}}
-            <li>{{payload}}</li>
+            <li>{{decrypt payload sender recipient}}</li>
         {{/each}}
     </ul>
     
@@ -93,6 +93,7 @@
   <script src="app/models.js"></script>
   <script src="app/views.js"></script>
   <script src="app/routes.js"></script>
+  <script src="app/helpers.js"></script>
   
   <script>
     App.initialize();
