@@ -13,7 +13,10 @@ App.Views.ContactsList = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template({ contacts: this.collection.toJSON() }));
+    this.$el.html(this.template({ 
+      private_key_hash: App.PrivateKeySingleton.get("private_key_hash"),
+      contacts: this.collection.toJSON() 
+    }));
     this.show();
   },
 
