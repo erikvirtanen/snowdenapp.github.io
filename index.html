@@ -39,6 +39,7 @@
   </script>
   
   <script type="text/x-handlebars-template" id="contacts_template">
+    <p>{{private_key_hash}}</p>
     <ul>
         {{#each contacts}}
             <li><a href="#conversation/{{public_key}}">{{public_key}}</a></li>
