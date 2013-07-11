@@ -34,22 +34,25 @@ App.Views.ShowConversation = Backbone.View.extend({
   initialize: function(id) {
     this.collection = new App.Collections.MessageList(id.id);
     this.collection.on('reset', this.render, this);
+    this.collection.bind('add', this.render, this);
   },
 
   events: {
     'click #send-message': 'doSendMessage',
   },
 
-  render: function(id) {
-    App.ApplicationStateSingleton.set("current_public_key", id);
+  render: function() {
+
     this.$el.html(this.template(
       {
-          public_key: id,
-          private_key: App.PrivateKeySingleton.get("private_key"),
-          private_key_hash: App.PrivateKeySingleton.get("private_key_hash"),
+        messages: this.collection.toJSON(),
+        public_key: this.collection.id,
+        private_key: App.PrivateKeySingleton.get("private_key"),
+        private_key_hash: App.PrivateKeySingleton.get("private_key_hash"),
       }
     ));
     this.show();
+    this.delegateEvents();
   },
 
   show: function() {
@@ -57,13 +60,24 @@ App.Views.ShowConversation = Backbone.View.extend({
   },
   
   doSendMessage: function(){
+  
     var encrypted = ECDH.encrypt(App.PrivateKeySingleton.get("private_key"),
-      App.ApplicationStateSingleton.get("current_public_key"), 
+      this.collection.id, 
       $('#the-message').val());
       
-    alert($('#the-message').val() + ' ' + App.PrivateKeySingleton.get("private_key") +
-      ' ' + App.ApplicationStateSingleton.get("current_public_key") +
-      ' ' + encrypted);
+    this.collection.create({ 
+      sender: App.PrivateKeySingleton.get("public_key"), 
+      recipient: this.collection.id, 
+      payload: encrypted 
+    }, 
+    {
+      success: function(model, resp) 
+      {
+        alert("Success");
+      },
+      error: function() {
+      }
+    });
       
     $('#encrypted-message').text(encrypted);
       
