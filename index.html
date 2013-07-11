@@ -48,6 +48,13 @@
   
   <script type="text/x-handlebars-template" id="show_conversation_template">
     <p>All Messages from {{public_key}}</p>
+    
+    <ul id="message-list">
+        {{#each messages}}
+            <li>{{payload}}</li>
+        {{/each}}
+    </ul>
+    
     <p>Current Private Key {{private_key}}</p>
     <p>Private Key Hash {{private_key_hash}}</p>
     
