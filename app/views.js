@@ -14,7 +14,6 @@ App.Views.ContactsList = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({ 
-      private_key_hash: App.PrivateKeySingleton.get("private_key_hash"),
       contacts: this.collection.toJSON() 
     }));
     this.show();
@@ -59,7 +58,7 @@ App.Views.ShowConversation = Backbone.View.extend({
   },
 
   show: function() {
-    $('#content').html(this.el);
+    $('#conversation-panel').html(this.el);
   },
   
   doSendMessage: function(){
