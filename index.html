@@ -25,11 +25,14 @@
         </form>
         
         <form class="form-inline">
-          <label>Create a Passphrase</label>
-          <input type="text" class="search-query" id="passphrase_created" />
-          <button id="regenerate-passphrase" class="btn">
-            <i class="icon-camera"></i>
-          </button>
+          <div class="control-group">
+            <label>Create a Passphrase</label>
+            <input type="text" class="search-query" id="passphrase_created" />
+            <button id="regenerate-passphrase" class="btn">
+              <i class="icon-camera"></i>
+            </button>
+          </div>
+          <p>Associated Name <span id="porn_name">&nbsp;</span></p>
         </form>
         
         <img src="http://placehold.it/563x690">
@@ -75,6 +78,7 @@
   <script src="lib/underscore-min.js"></script>
   <script src="lib/backbone-min.js"></script>
   <script src="lib/handlebars.js"></script>
+  <script src="lib/porn_name.js"></script>
   
   <!-- Elliptic curve Diffie–Hellman (ECDH) javascript -->
   <script src="ecdh/jsbn.js"></script>
