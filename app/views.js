@@ -121,6 +121,7 @@ App.Views.Login = Backbone.View.extend({
   doRegenerate: function(){
     App.PrivateKeySingleton.regenerate();
     $('#passphrase_created').val(App.PrivateKeySingleton.get("private_key"));
+    $('#porn_name').text(porn_name(App.PrivateKeySingleton.get("public_key")));
     return false;
   }
 });
