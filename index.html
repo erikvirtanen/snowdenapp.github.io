@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>SnowdenApp.com</title>
   <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="you-got-style.css" />
 </head>
 <body style="margin-top: 60px">
 
@@ -42,12 +43,16 @@
   </script>
   
   <script type="text/x-handlebars-template" id="contacts_template">
-    <p>{{private_key_hash}}</p>
-    <ul>
-        {{#each contacts}}
-            <li><a href="#conversation/{{public_key}}">{{public_key}}</a></li>
-        {{/each}}
-    </ul>
+    <div class="row">
+      <div class="span4" id="contacts">
+        <ul>
+            {{#each contacts}}
+                <li><a href="#conversation/{{public_key}}">{{porn_name public_key}}</a></li>
+            {{/each}}
+        </ul>
+      </div>
+      <div class="span8" id="conversation-panel">
+      </div>
   </script>
   
   <script type="text/x-handlebars-template" id="show_conversation_template">
