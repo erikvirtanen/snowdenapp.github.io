@@ -9,3 +9,7 @@ Handlebars.registerHelper('decrypt', function(payload, sender, recipient) {
     pubKey, 
     payload);
 });
+
+Handlebars.registerHelper('porn_name', function(public_key) {
+  return porn_name(public_key);
+});
