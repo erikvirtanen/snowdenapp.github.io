@@ -112,15 +112,17 @@ App.Views.Login = Backbone.View.extend({
   
   doLogon: function(event){
     event.preventDefault(); 
-    var pk = $('#passphrase_input').val();
-    App.PrivateKeySingleton.setPrivateKey(pk);
+    var pass = $('#passphrase_input').val();
+    App.PrivateKeySingleton.setPassPhrase(pass);
     window.location.assign('#contacts');
   },
   
   doRegenerate: function(){
     App.PrivateKeySingleton.regenerate();
-    $('#passphrase_created').val(App.PrivateKeySingleton.get("private_key"));
+    $('#passphrase_created').val(App.PrivateKeySingleton.getPassPhrase());
     $('#porn_name').text(porn_name(App.PrivateKeySingleton.get("public_key")));
+    $('#public_link').text(App.PrivateKeySingleton.get("public_key"));
+    $('#the_hash').text(App.PrivateKeySingleton.get("private_key_hash"));
     return false;
   }
 });
