@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SnowdenApp.com</title>
+  <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="you-got-style.css" />
+</head>
+<body style="margin-top: 60px">
+
+  <div id="content" class="container">
+  </div>
+  
+  <script type="text/x-handlebars-template" id="logon_template">
+  
+    <div class="row">
+      <div class="span4">
+        <p><button class="btn">Sign Up</button> 
+        or <button class="btn">Login</button></p>
+      </div>
+      <div class="span8">
+        <form id="#logon-form" target="#contacts" class="form-inline">
+          <label>Passphrase</label>
+          <input type="text" class="search-query" id="passphrase_input" value="threaten sheet also bottle hunt appear muse want thorn clock hunger express" />
+          <input type="submit" class="btn" value="Enter" />
+        </form>
+        
+        <form class="form-inline">
+          <div class="control-group">
+            <label>Create a Passphrase</label>
+            <input type="text" class="search-query" id="passphrase_created" />
+            <button id="regenerate-passphrase" class="btn">
+              <i class="icon-camera"></i>
+            </button>
+          </div>
+          <p>Associated Name <span id="porn_name">&nbsp;</span></p>
+          <p>Public Link <span id="public_link">&nbsp;</span></p>
+          <p>Hash <span id="the_hash">&nbsp;</span></p>
+        </form>
+        
+        <img src="http://placehold.it/563x690">
+      </div>
+    </div>
+    
+  </script>
+  
+  <script type="text/x-handlebars-template" id="contacts_template">
+    <div class="row">
+      <div class="span4" id="contacts">
+        <ul>
+            {{#each contacts}}
+                <li><a href="#conversation/{{public_key}}">{{porn_name public_key}}</a></li>
+            {{/each}}
+        </ul>
+      </div>
+      <div class="span8" id="conversation-panel">
+      </div>
+  </script>
+  
+  <script type="text/x-handlebars-template" id="show_conversation_template">
+    <p>All Messages from {{public_key}}</p>
+    
+    <ul id="message-list">
+        {{#each messages}}
+            <li>{{decrypt payload sender recipient}}</li>
+        {{/each}}
+    </ul>
+    
+    <p>Current Private Key {{private_key}}</p>
+    <p>Private Key Hash {{private_key_hash}}</p>
+    
+    <form class="form-inline">
+      <label>Send Message</label>
+      <textarea id="the-message" name="the-message">This is a test message.</textarea>
+      <button id="send-message" class="btn">
+        <i class="icon-camera"></i>
+      </button>
+    </form>
+    
+    <p id="encrypted-message">Message goes here</p>
+  </script>
+  
+  <!-- Javascript for backbone and client side stuff -->
+  <script src="lib/jquery-2.0.0.min.js"></script>
+  <script src="lib/underscore-min.js"></script>
+  <script src="lib/backbone-min.js"></script>
+  <script src="lib/handlebars.js"></script>
+  <script src="lib/porn_name.js"></script>
+  
+  <!-- Elliptic curve Diffie–Hellman (ECDH) javascript -->
+  <script src="ecdh/jsbn.js"></script>
+  <script src="ecdh/jsbn2.js"></script>
+  <script src="ecdh/prng4.js"></script>
+  <script src="ecdh/rng.js"></script>
+  <script src="ecdh/ec.js"></script>
+  <script src="ecdh/sec.js"></script>
+  <script src="ecdh/aes.js"></script>
+  <script src="ecdh/mnemonic.js"></script>
+  <script src="ecdh/crypto.js"></script>
+  <script src="ecdh/sha256.js"></script>
+  <script src="ecdh/ecdh.js"></script>
+  
+  <!-- Backbone model, routes and views -->
+  <script src="app/app.js"></script>
+  <script src="app/models.js"></script>
+  <script src="app/views.js"></script>
+  <script src="app/routes.js"></script>
+  <script src="app/helpers.js"></script>
+  
+  <script>
+    App.initialize();
+  </script>
+</body>
+</html>
