@@ -1,460 +1,609 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>SnowdenApp.com</title>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="lib/fancy-box/jquery.fancybox.css" />
+  <meta charset="utf-8">
+  <title>SnowdenApp.com</title>
+  <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="lib/fancy-box/jquery.fancybox.css" />
 </head>
 <body style="margin-top: 60px">
 
-<div id="content" class="container">
-</div>
-
-<script type="text/x-handlebars-template" id="logon_template">
-    <script type="text/javascript">
+  <div id="content" class="container">
+  </div>
+  
+  <script type="text/x-handlebars-template" id="logon_template">
+	<script type="text/javascript">
         $(document).ready(function(){
-        $('body:not(.notHome) #signup').live('click',function() {
-        $(this).removeClass('buttonOn');
-        $('#screenshot').addClass('moved');
-        $('#signinForm').removeClass('on');
-        $('#signupForm').addClass('on');
-        $('#signupForm input[type="text"]').focus();
+            $('body:not(.notHome) #signup').live('click',function() {
+                $(this).removeClass('buttonOn');
+                $('#screenshot').addClass('moved');
+                $('#signinForm').removeClass('on');
+                $('#signupForm').addClass('on');
+                $('#signupForm input[type="text"]').focus();
 
-        $(document).click(function(event) {
-        if (event.target.id == 'signupFormClose' || !$(event.target).is('#signupForm, #signupForm *')) {
-        $(document).unbind(event);
-        $('#signup').addClass('buttonOn');
-        $('#screenshot').removeClass('moved');
-        $('#signupForm input[type="text"]').blur();
-        }
-        });
-        return false;
-        });
-        $('body:not(.notHome) #signin').live('click',function() {
-        $(this).removeClass('buttonOn');
-        $('#screenshot').addClass('moved');
-        $('#signupForm').removeClass('on');
-        $('#signinForm').addClass('on');
-        $('#signinForm input[type="text"]').focus();
+                $(document).click(function(event) {
+                if (event.target.id == 'signupFormClose' || !$(event.target).is('#signupForm, #signupForm *')) {
+                $(document).unbind(event);
+                $('#signup').addClass('buttonOn');
+                $('#screenshot').removeClass('moved');
+                $('#signupForm input[type="text"]').blur();
+                }
+            });
+            return false;
+            });
+            $('body:not(.notHome) #signin').live('click',function() {
+                $(this).removeClass('buttonOn');
+                $('#screenshot').addClass('moved');
+                $('#signupForm').removeClass('on');
+                $('#signinForm').addClass('on');
+                $('#signinForm input[type="text"]').focus();
 
-        $(document).live('click',function(event) {
-        if (event.target.id == 'signinFormClose' || !$(event.target).is('#signinForm, #signinForm *')) {
+                $(document).live('click',function(event) {
+                    if (event.target.id == 'signinFormClose' || !$(event.target).is('#signinForm, #signinForm *')) {
 
-        $(document).unbind(event);
-        $('#signin').addClass('buttonOn');
-        $('#screenshot').removeClass('moved');
-        $('#signinForm input[type="text"]').blur();
-        }
-        });
-        return false;
-        });
-        $('#signupFormClose').live('click',function(event) {
-        event.preventDefault();
+                    $(document).unbind(event);
+                    $('#signin').addClass('buttonOn');
+                    $('#screenshot').removeClass('moved');
+                    $('#signinForm input[type="text"]').blur();
+                    }
+                });
+                return false;
+            });
+            $('#signupFormClose').live('click',function(event) {
+                event.preventDefault();
 
+            });
+            $('#signFormClose').live('click',function(event) {
+                event.preventDefault();
+            });
         });
-        $('#signFormClose').live('click',function(event) {
-        event.preventDefault();
-        });
-        });
-        <{{!}}/script>
-        <div class="row">
-            <div class="span3 offset1">
-                <p><button class="button buttonOn" id="signup">Sign Up</button>
-                    or <button class="button buttonOn" id="signin">Login</button></p>
-            </div>
-            <div class="span7 offset1">
-                <div id="signinForm">
-                    <a title="Close the signin form" href="#" id="signinFormClose">Close</a>
-                    <form  target="#contacts" class="form-inline">
-                        <label>Passphrase</label>
-                        <input type="text" class="search-query" id="passphrase_input" value="threaten sheet also bottle hunt appear muse want thorn clock hunger express" />
-                        <input type="submit" class="btn" value="Enter" />
-                    </form>
-                </div>
-                <div id="signupForm">
-                    <form class="form-inline">
-                        <a title="Close the signup form" href="#" id="signupFormClose">Close</a>
-                        <div class="control-group">
-                            <label>Create a Passphrase</label>
-                            <input type="text" class="search-query" id="passphrase_created" />
-                            <button id="regenerate-passphrase" class="btn">
-                                <i class="icon-camera"></i>
-                            </button>
-                        </div>
-                        <p>Associated Name <span id="porn_name">&nbsp;</span></p>
-                        <p>Public Link <span id="public_link">&nbsp;</span></p>
-                        <p>Hash <span id="the_hash">&nbsp;</span></p>
-                    </form>
-                </div>
-                <div id="screenshot"></div>
-            </div>
+     <{{!}}/script>
+    <div class="row">
+      <div class="span3 offset1">
+        <p><button class="button buttonOn" id="signup">Sign Up</button> 
+        or <button class="button buttonOn" id="signin">Login</button></p>
+      </div>
+      <div class="span7 offset1">
+		<div id="signinForm">
+			<a title="Close the signin form" href="#" id="signinFormClose">Close</a>
+			<form  target="#contacts" class="form-inline">
+			  <label>Passphrase</label>
+			  <input type="text" class="search-query" id="passphrase_input" value="threaten sheet also bottle hunt appear muse want thorn clock hunger express" />
+			  <input type="submit" class="btn" value="Enter" />
+			</form>
         </div>
-
-    </script>
-
-    <script type="text/x-handlebars-template" id="contacts_template">
-            <div class="row">
-            <div class="span4" id="contacts">
-            <ul>
-    {{#each contacts}}
-    <li><a href="#conversation/{{public_key}}">{{porn_name public_key}}</a></li>
-    {{/each}}
-            </ul>
-            </div>
-    <div class="span8" id="conversation-panel">
-            </div>
-</script>
-
-<script type="text/x-handlebars-template" id="show_conversation_template">
-<script type="text/javascript" defer="defer">
-$(document).ready(function() {
-var USERS = window.USERS = {}
-, windowStatus
-, afkDeliveredMessages = 0
-, roomName = $('#room_name').text();
-// First update the title with room's name
-
-
-focusInput();
-
-// Then check users online!
-$('.people a').each(function(index, element) {
-USERS[$(element).data('provider') + ':' + $(element).data('username')] = 1;
-});
-
-
-//View handlers
-$('.dropdown a.selected').live('click', function(event) {
-
-event.preventDefault();
-
-$('.create-room').show().next('form .text').hide();
-$(this).toggleClass('active');
-$(this).next('.dropdown-options').toggle();
-
-
-});
-
-
-$('.create-room').live('click',function(event) {
-event.preventDefault();
-$(this).hide();
-$(this).next('.text').fadeIn();
-});
-
-$('.lock').live('click',function(event) {
-event.preventDefault();
-$(this).toggleClass('active');
-});
-
-$('.fancybox').fancybox({'margin': 0, 'padding': 0});
-
-$('.invite-people').live('click',function(event){
-event.preventDefault();
-$(this).hide().after('<p class="inviting-people">Inviting people, please wait.</p>').delay(2000).hide().after('something');
-});
-
-
-/*  $('.chat-input input').keypress(function(e) {
-var inputText = $(this).val().trim();
-if(e.which == 13 && inputText) {
-var chunks = inputText.match(/.{1,1024}/g)
-, len1 = chunks.length;
-for(var i = 0; i<len1; i++) {
-//socket.emit('my msg', {msg: chunks[i]});
-}
-$(this).val('');
-return false;
-}
-}); */
-
-$('.dropdown-status .list a.status').live('click',function(event) {
-event.preventDefault();
-// socket.emit('set status', {status: $(this).data('status')});
-});
-
-var timeParser = function(date) {
-var hours = date.getHours()
-, minutes = date.getMinutes()
-, seconds = date.getSeconds();
-return {
-hours: hours > 12 ? hours - 12 : hours,
-minutes: minutes > 10 ? minutes : '0' + minutes,
-seconds: seconds > 10 ? seconds : '0' + seconds,
-meridiem: hours > 12 ? 'PM' : 'AM'
-}
-};
-
-var textParser = function(text) {
-text = text
-.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig,"<a href=\"$1\" target='_blank'>$1</a>")
-.replace(/(@)([a-zA-Z0-9_]+)/g, "<a href=\"http://twitter.com/$2\" target=\"_blank\">$1$2</a>");
-return injectEmoticons(text);
-};
-
-var parseChatBox = function(chatBox) {
-var chatBoxMsg = chatBox.find('p');
-parseChatBoxMsg(chatBoxMsg);
-return chatBox;
-};
-
-var parseChatBoxMsg = function(chatBoxMsg) {
-var msg = chatBoxMsg.html();
-return chatBoxMsg.html(textParser(msg));
-};
-
-var patterns = {
-angry: /\&gt;:-o|\&gt;:o|\&gt;:-O|\&gt;:O|\&gt;:-\(|\&gt;:\(/g,
-naughty: /\&gt;:-\)|\&gt;:\)|\&gt;:-\&gt;|\&gt;:\&gt;/g,
-sick: /:-\&amp;|:\&amp;|=\&amp;|=-\&amp;|:-@|:@|=@|=-@/g,
-smile: /:-\)|:\)|=-\)|=\)/g,
-wink: /;-\)|;\)/g,
-frown: /:-\(|:\(|=\(|=-\(/g,
-ambivalent: /:-\||:\|/g,
-gasp: /:-O|:O|:-o|:o|=-O|=O|=-o|=o/g,
-laugh: /:-D|:D|=-D|=D/g,
-kiss: /:-\*|:\*|=-\*|=\*/g,
-yuck: /:-P|:-p|:-b|:P|:p|:b|=-P|=-p|=-b|=P|=p|=b/g,
-yum: /:-d|:d/g,
-grin: /\^_\^|\^\^|\^-\^/g,
-sarcastic: /:-\&gt;|:\&gt;|\^o\)/g,
-cry: /:'\(|='\(|:'-\(|='-\(/g,
-cool: /8-\)|8\)|B-\)|B\)/g,
-nerd: /:-B|:B|8-B|8B/g,
-innocent: /O:-\)|o:-\)|O:\)|o:\)/g,
-sealed: /:-X|:X|=X|=-X/g,
-footinmouth: /:-!|:!/g,
-embarrassed: /:-\[|:\[|=\[|=-\[/g,
-crazy: /%-\)|%\)/g,
-confused: /:-S|:S|:-s|:s|%-\(|%\(|X-\(|X\(/g,
-moneymouth: /:-\$|:\$|=\$|=-\$/g,
-heart: /\(L\)|\(l\)/g,
-thumbsup: /\(Y\)|\(y\)/g,
-thumbsdown: /\(N\)|\(n\)/g,
-"not-amused": /-.-\"|-.-|-_-\"|-_-/g,
-"mini-smile": /c:|C:|c-:|C-:/g,
-"mini-frown": /:c|:C|:-c|:-C/g,
-content: /:j|:J/g,
-hearteyes: /\&lt;3/g
-};
-
-var emoticHTML = "<span class='emoticon $emotic'></span>";
-var injectEmoticons = function(text) {
-for(var emotic in patterns) {
-text = text.replace(patterns[emotic],emoticHTML.replace("$emotic", "emoticon-" + emotic));
-}
-return text;
-}
-// TITLE notifications
-var hidden
-, change
-, vis = {
-hidden: "visibilitychange",
-mozHidden: "mozvisibilitychange",
-webkitHidden: "webkitvisibilitychange",
-msHidden: "msvisibilitychange",
-oHidden: "ovisibilitychange" /* not currently supported */
-};
-for (var hidden in vis) {
-if (vis.hasOwnProperty(hidden) && hidden in document) {
-change = vis[hidden];
-break;
-}
-}
-if (change) {
-document.addEventListener(change, onchange);
-} else if (/*@cc_on!@*/false) { // IE 9 and lower
-document.onfocusin = document.onfocusout = onchange
-} else {
-window.onfocus = window.onblur = onchange;
-}
-function onchange (evt) {
-var body = document.body;
-evt = evt || window.event;
-if (evt.type == "focus" || evt.type == "focusin") {
-windowStatus = "visible";
-} else if (evt.type == "blur" || evt.type == "focusout") {
-windowStatus = "hidden";
-} else {
-windowStatus = this[hidden] ? "hidden" : "visible";
-}
-if(windowStatus == "visible" && afkDeliveredMessages) {
-afkDeliveredMessages = 0;
-updateTitle();
-}
-if (windowStatus == "visible") {
-focusInput();
-}
-}
-
-function focusInput() {
-$(".chat-input input.text").focus();
-}
-});
-<{{!}}/script>
-<div class="wrap">
-    <header>
-        <div class="dropdown dropdown-status">
-            <i></i><a class="selected available" href="#"><b></b>available</a>
-            <div class="dropdown-options">
-                <div class="triangle"></div>
-                <div class="list">
-                    <a class="option status available current" href="#" data-status="available"><b></b>available</a>
-                    <a class="option status away " href="#" data-status="away"><b></b>away</a>
-                    <a class="option status busy " href="#" data-status="busy"><b></b>busy</a>
-                    <a class="option logout" href="/logout">Sign Out</a>
-                </div>
-            </div>
+		<div id="signupForm">
+			<form class="form-inline">
+			  <a title="Close the signup form" href="#" id="signupFormClose">Close</a>
+			  <div class="control-group">
+				<label>Create a Passphrase</label>
+				<input type="text" class="search-query" id="passphrase_created" />
+				<button id="regenerate-passphrase" class="btn">
+				  <i class="icon-camera"></i>
+				</button>
+			  </div>
+			  <p>Associated Name <span id="porn_name">&nbsp;</span></p>
+			  <p>Public Link <span id="public_link">&nbsp;</span></p>
+			  <p>Hash <span id="the_hash">&nbsp;</span></p>
+			</form>
         </div>
-        <div class="dropdown dropdown-room">
-            <i></i><a class="selected" href="#">test</a>
-            <div class="dropdown-options" style="display: none;">
-                <div class="triangle"></div>
-                <form action="/create" method="POST">
-                    <a class="option create-room" href="#">Create a room</a>
-                    <input type="text" class="text" style="display: none" placeholder="Name of your room" value="" name="room_name">
-                </form><div class="list">
-                <a class="option current" href="#">test</a>
-            </div>
-            </div>
-        </div><!-- .dropdown-room -->
-        <a class="button-circle invite fancybox" style="display:none;" href="#invite">
-            <strong><span><i></i></span></strong>
-        </a>
-        <div class="modal modal-invite" style="display: none" id="invite">
-            <h2>Invite people to join the room
-                <div class="modal-content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                </div>
-                <div class="tweet-user">
-                    <input>
-                </div>
-                <div class="tweet-user">
-                    <input>
-                </div>
-                <div class="tweet-user">
-                    <input type="text" class="error" value="" name="">
-                </div>
-                <div class="tweet-user">
-                    <input>
-                </div>
-                <div class="tweet-user">
-                    <input>
-                </div>
-                <div class="tweet-user">
-                    <input>
-                </div>
-            </h2><!-- .modal-content <div class="modal-footer"><a href="#" class="button invite-people">Invite these people</a></div>--><!-- .modal-footers <!-- #invite -->--&gt;
-        </div>
-        <a class="button-circle lock" style="display:none;" href="#"><strong><span><i></i></span></strong></a>
-    </header>
-    <sidebar>
-        <div class="online">
-            <h4 class="inner-padding">ONLINE</h4>
-            <div class="people">
-                <a class="available" data-provider="facebook" data-username="shen.yang.75641297" href="#"><b></b>{{porn_name public_key}}</a>
-            </div><!-- .people -->
-        </div><!-- .online -->
-        <div class="files">
-            <h3>Files</h3>
-            <div class="files-container">
-                <a class="picture" href="#">
-                    <span><i></i></span>filename-example.dmg
-                </a>
-                <a class="file" href="#">
-                    <span><i></i></span>filename-example.dmg
-                </a>
-                <a class="picture" href="#">
-                    <span><i></i></span>filename-example.dmg
-                </a>
-                <a class="file" href="#">
-                    <span><i></i></span>filename-example.dmg
-                </a>
-            </div><!-- .files-container -->
-        </div><!-- .files -->
-        <a class="sidebar-open-source" target="_blank" href="https://github.com/gravityonmars/Balloons.IO">get the code from github</a>
-    </sidebar>
-    <div class="content" role="main">
-        <div class="chat"><!-- chat-content-->
-            <div class="history"><!--historical submits--></div>
-            <div class="current"><!--current submits-->
-                <div class="notice" data-user="shen.yang.75641297">
-                    <span class="date">5:51 PM</span> {{porn_name public_key}} has joined the room.
-                </div>
-
-                <div class="chat-box" data-type="chat" data-provider="facebook" data-user="">
-                    <div class="avatar avatar-facebook"><img src=""></a>
-                    </div>
-                    <h5>{{porn_name public_key}}</h5>
-                    {{#each messages}}
-                    <p><span class="date">6:25 AM</span>{{decrypt payload sender recipient}}</p>
-
-                    {{/each}}
-                </div>
-            </div>
-        </div><!-- .chat -->
-        <div class="line-chat"></div>
-        <div class="line-chat second"></div>
-        <div class="chat-input">
-            <input type="text" class="text" value="" placeholder="Your Message" name="the-message" id="the-message"><!-- .chat-input-->
-        </div>
+        <div id="screenshot"></div>
+      </div>
     </div>
-    <p id="encrypted-message" style="display:none;">Message goes here</p>
-</div>
-<!--   <p>All Messages from {{public_key}}</p>
+    
+  </script>
+  
+  <script type="text/x-handlebars-template" id="contacts_template">
+          <script type="text/javascript" defer="defer">
+          $(document).ready(function() {
+              var USERS = window.USERS = {}
+                      , windowStatus
+                      , afkDeliveredMessages = 0
+                      , roomName = $('#room_name').text();
+              // First update the title with room's name
 
- <ul id="message-list">
-     {{#each messages}}
-         <li>{{decrypt payload sender recipient}}</li>
-     {{/each}}
- </ul>
 
- <p>Current Private Key {{private_key}}</p>
- <p>Private Key Hash {{private_key_hash}}</p>
+              focusInput();
 
- <form class="form-inline">
-   <label>Send Message</label>
-   <textarea id="the-message" name="the-message">This is a test message.</textarea>
-   <button id="send-message" class="btn">
-     <i class="icon-camera"></i>
-   </button>
- </form>
+              // Then check users online!
+              $('.people a').each(function(index, element) {
+                  USERS[$(element).data('provider') + ':' + $(element).data('username')] = 1;
+              });
 
- <p id="encrypted-message">Message goes here</p> -->
-</script>
 
-<!-- Javascript for backbone and client side stuff -->
-<script src="lib/jquery-1.7.1.min.js"></script>
-<script src="lib/underscore-min.js"></script>
-<script src="lib/backbone-min.js"></script>
-<script src="lib/handlebars.js"></script>
-<script src="lib/porn_name.js"></script>
-<script src="lib/fancy-box/jquery.fancybox.pack.js"></script>
-<!-- Elliptic curve Diffie–Hellman (ECDH) javascript -->
-<script src="ecdh/jsbn.js"></script>
-<script src="ecdh/jsbn2.js"></script>
-<script src="ecdh/prng4.js"></script>
-<script src="ecdh/rng.js"></script>
-<script src="ecdh/ec.js"></script>
-<script src="ecdh/sec.js"></script>
-<script src="ecdh/aes.js"></script>
-<script src="ecdh/mnemonic.js"></script>
-<script src="ecdh/crypto.js"></script>
-<script src="ecdh/sha256.js"></script>
-<script src="ecdh/ecdh.js"></script>
+              //View handlers
+              $('.dropdown a.selected').live('click', function(event) {
 
-<!-- Backbone model, routes and views -->
-<script src="app/app.js"></script>
-<script src="app/models.js"></script>
-<script src="app/views.js"></script>
-<script src="app/routes.js"></script>
-<script src="app/helpers.js"></script>
+                  event.preventDefault();
 
-<script>
+                  $('.create-room').show().next('form .text').hide();
+                  $(this).toggleClass('active');
+                  $(this).next('.dropdown-options').toggle();
+
+
+              });
+
+
+              $('.create-room').live('click',function(event) {
+                  event.preventDefault();
+                  $(this).hide();
+                  $(this).next('.text').fadeIn();
+              });
+
+
+
+
+
+              $('.dropdown-status .list a.status').live('click',function(event) {
+                  event.preventDefault();
+                  // socket.emit('set status', {status: $(this).data('status')});
+              });
+
+              var timeParser = function(date) {
+                  var hours = date.getHours()
+                          , minutes = date.getMinutes()
+                          , seconds = date.getSeconds();
+                  return {
+                      hours: hours > 12 ? hours - 12 : hours,
+                      minutes: minutes > 10 ? minutes : '0' + minutes,
+                      seconds: seconds > 10 ? seconds : '0' + seconds,
+                      meridiem: hours > 12 ? 'PM' : 'AM'
+                  }
+              };
+
+              var textParser = function(text) {
+                  text = text
+                          .replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig,"<a href=\"$1\" target='_blank'>$1</a>")
+                          .replace(/(@)([a-zA-Z0-9_]+)/g, "<a href=\"http://twitter.com/$2\" target=\"_blank\">$1$2</a>");
+                  return injectEmoticons(text);
+              };
+
+              var parseChatBox = function(chatBox) {
+                  var chatBoxMsg = chatBox.find('p');
+                  parseChatBoxMsg(chatBoxMsg);
+                  return chatBox;
+              };
+
+              var parseChatBoxMsg = function(chatBoxMsg) {
+                  var msg = chatBoxMsg.html();
+                  return chatBoxMsg.html(textParser(msg));
+              };
+
+              var patterns = {
+                  angry: /\&gt;:-o|\&gt;:o|\&gt;:-O|\&gt;:O|\&gt;:-\(|\&gt;:\(/g,
+                  naughty: /\&gt;:-\)|\&gt;:\)|\&gt;:-\&gt;|\&gt;:\&gt;/g,
+                  sick: /:-\&amp;|:\&amp;|=\&amp;|=-\&amp;|:-@|:@|=@|=-@/g,
+                  smile: /:-\)|:\)|=-\)|=\)/g,
+                  wink: /;-\)|;\)/g,
+                  frown: /:-\(|:\(|=\(|=-\(/g,
+                  ambivalent: /:-\||:\|/g,
+                  gasp: /:-O|:O|:-o|:o|=-O|=O|=-o|=o/g,
+                  laugh: /:-D|:D|=-D|=D/g,
+                  kiss: /:-\*|:\*|=-\*|=\*/g,
+                  yuck: /:-P|:-p|:-b|:P|:p|:b|=-P|=-p|=-b|=P|=p|=b/g,
+                  yum: /:-d|:d/g,
+                  grin: /\^_\^|\^\^|\^-\^/g,
+                  sarcastic: /:-\&gt;|:\&gt;|\^o\)/g,
+                  cry: /:'\(|='\(|:'-\(|='-\(/g,
+                  cool: /8-\)|8\)|B-\)|B\)/g,
+                  nerd: /:-B|:B|8-B|8B/g,
+                  innocent: /O:-\)|o:-\)|O:\)|o:\)/g,
+                  sealed: /:-X|:X|=X|=-X/g,
+                  footinmouth: /:-!|:!/g,
+                  embarrassed: /:-\[|:\[|=\[|=-\[/g,
+                  crazy: /%-\)|%\)/g,
+                  confused: /:-S|:S|:-s|:s|%-\(|%\(|X-\(|X\(/g,
+                  moneymouth: /:-\$|:\$|=\$|=-\$/g,
+                  heart: /\(L\)|\(l\)/g,
+                  thumbsup: /\(Y\)|\(y\)/g,
+                  thumbsdown: /\(N\)|\(n\)/g,
+                  "not-amused": /-.-\"|-.-|-_-\"|-_-/g,
+                  "mini-smile": /c:|C:|c-:|C-:/g,
+                  "mini-frown": /:c|:C|:-c|:-C/g,
+                  content: /:j|:J/g,
+                  hearteyes: /\&lt;3/g
+              };
+
+              var emoticHTML = "<span class='emoticon $emotic'></span>";
+              var injectEmoticons = function(text) {
+                  for(var emotic in patterns) {
+                      text = text.replace(patterns[emotic],emoticHTML.replace("$emotic", "emoticon-" + emotic));
+                  }
+                  return text;
+              }
+              // TITLE notifications
+              var hidden
+                      , change
+                      , vis = {
+                          hidden: "visibilitychange",
+                          mozHidden: "mozvisibilitychange",
+                          webkitHidden: "webkitvisibilitychange",
+                          msHidden: "msvisibilitychange",
+                          oHidden: "ovisibilitychange" /* not currently supported */
+                      };
+              for (var hidden in vis) {
+                  if (vis.hasOwnProperty(hidden) && hidden in document) {
+                      change = vis[hidden];
+                      break;
+                  }
+              }
+              if (change) {
+                  document.addEventListener(change, onchange);
+              } else if (/*@cc_on!@*/false) { // IE 9 and lower
+                  document.onfocusin = document.onfocusout = onchange
+              } else {
+                  window.onfocus = window.onblur = onchange;
+              }
+              function onchange (evt) {
+                  var body = document.body;
+                  evt = evt || window.event;
+                  if (evt.type == "focus" || evt.type == "focusin") {
+                      windowStatus = "visible";
+                  } else if (evt.type == "blur" || evt.type == "focusout") {
+                      windowStatus = "hidden";
+                  } else {
+                      windowStatus = this[hidden] ? "hidden" : "visible";
+                  }
+                  if(windowStatus == "visible" && afkDeliveredMessages) {
+                      afkDeliveredMessages = 0;
+                      updateTitle();
+                  }
+                  if (windowStatus == "visible") {
+                      focusInput();
+                  }
+              }
+
+              function focusInput() {
+                  $(".chat-input input.text").focus();
+              }
+          });
+          <{{!}}/script>
+          <div class="wrap">
+                  <header>
+                      <div class="dropdown dropdown-status">
+                            <i></i><a class="selected available" href="#"><b></b>available</a>
+                            <div class="dropdown-options">
+                                <div class="triangle"></div>
+                                <div class="list">
+                                      <a class="option status available current" href="#" data-status="available"><b></b>available</a>
+                                      <a class="option status away " href="#" data-status="away"><b></b>away</a>
+                                      <a class="option status busy " href="#" data-status="busy"><b></b>busy</a>
+                                      <a class="option logout" href="/logout">Sign Out</a>
+                                </div>
+                            </div>
+                      </div>
+                      <div class="dropdown dropdown-room">
+                              <i></i><a class="selected" href="#">Setting</a>
+                              <div class="dropdown-options" style="display: none;">
+                                  <div class="triangle"></div>
+                                  <!-- <form action="/create" method="POST">
+                                    <a class="option create-room" href="#">Create a room</a>
+                                    <input type="text" class="text" style="display: none" placeholder="Name of your room" value="" name="room_name">
+                                  </form> -->
+                                  <div class="list">
+                                  <a class="option current" href="/">log out</a>
+                                  </div>
+                              </div>
+                      </div><!-- .dropdown-room -->
+                  </header>
+                  <sidebar>
+                        <div class="online">
+                            <h4 class="inner-padding">ONLINE</h4>
+                            <div class="people">
+                              {{#each contacts}}
+                                    <a class="available" data-provider="facebook" data-username="{{porn_name public_key}}" href="#conversation/{{public_key}}"><b></b>{{porn_name public_key}}</a>
+                              {{/each}}
+                            </div><!-- .people -->
+                        </div><!-- .online -->
+                        <a class="sidebar-open-source" target="_blank" href="https://github.com/gravityonmars/Balloons.IO">get the code from github</a>
+                  </sidebar>
+                  <div class="content" role="main">
+                        <div class="chat"><!-- chat-content-->
+                            <div class="history"><!--historical submits--></div>
+                            <div class="current"><!--current submits--></div>
+                        </div><!-- .chat -->
+                        <div class="line-chat"></div>
+                        <div class="line-chat second"></div>
+                        <div class="chat-input">
+                            <input type="text" class="text" value="" placeholder="Your Message" name="" disabled><!-- .chat-input-->
+                        </div>
+                  </div>
+          </div>
+
+
+  </script>
+  
+  <script type="text/x-handlebars-template" id="show_conversation_template">
+      <script type="text/javascript" defer="defer">
+          $(document).ready(function() {
+          var USERS = window.USERS = {}
+          , windowStatus
+          , afkDeliveredMessages = 0
+          , roomName = $('#room_name').text();
+          // First update the title with room's name
+
+
+          focusInput();
+
+          // Then check users online!
+          $('.people a').each(function(index, element) {
+          USERS[$(element).data('provider') + ':' + $(element).data('username')] = 1;
+          });
+
+
+          //View handlers
+          $('.dropdown a.selected').live('click', function(event) {
+
+              event.preventDefault();
+
+          $('.create-room').show().next('form .text').hide();
+              $(this).toggleClass('active');
+              $(this).next('.dropdown-options').toggle();
+
+
+          });
+
+
+          $('.create-room').live('click',function(event) {
+            event.preventDefault();
+          $(this).hide();
+          $(this).next('.text').fadeIn();
+          });
+
+
+
+
+
+          $('.dropdown-status .list a.status').live('click',function(event) {
+            event.preventDefault();
+            // socket.emit('set status', {status: $(this).data('status')});
+          });
+
+          var timeParser = function(date) {
+          var hours = date.getHours()
+          , minutes = date.getMinutes()
+          , seconds = date.getSeconds();
+          return {
+          hours: hours > 12 ? hours - 12 : hours,
+          minutes: minutes > 10 ? minutes : '0' + minutes,
+          seconds: seconds > 10 ? seconds : '0' + seconds,
+          meridiem: hours > 12 ? 'PM' : 'AM'
+          }
+          };
+
+          var textParser = function(text) {
+          text = text
+          .replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig,"<a href=\"$1\" target='_blank'>$1</a>")
+          .replace(/(@)([a-zA-Z0-9_]+)/g, "<a href=\"http://twitter.com/$2\" target=\"_blank\">$1$2</a>");
+          return injectEmoticons(text);
+          };
+
+          var parseChatBox = function(chatBox) {
+          var chatBoxMsg = chatBox.find('p');
+          parseChatBoxMsg(chatBoxMsg);
+          return chatBox;
+          };
+
+          var parseChatBoxMsg = function(chatBoxMsg) {
+          var msg = chatBoxMsg.html();
+          return chatBoxMsg.html(textParser(msg));
+          };
+
+          var patterns = {
+          angry: /\&gt;:-o|\&gt;:o|\&gt;:-O|\&gt;:O|\&gt;:-\(|\&gt;:\(/g,
+          naughty: /\&gt;:-\)|\&gt;:\)|\&gt;:-\&gt;|\&gt;:\&gt;/g,
+          sick: /:-\&amp;|:\&amp;|=\&amp;|=-\&amp;|:-@|:@|=@|=-@/g,
+          smile: /:-\)|:\)|=-\)|=\)/g,
+          wink: /;-\)|;\)/g,
+          frown: /:-\(|:\(|=\(|=-\(/g,
+          ambivalent: /:-\||:\|/g,
+          gasp: /:-O|:O|:-o|:o|=-O|=O|=-o|=o/g,
+          laugh: /:-D|:D|=-D|=D/g,
+          kiss: /:-\*|:\*|=-\*|=\*/g,
+          yuck: /:-P|:-p|:-b|:P|:p|:b|=-P|=-p|=-b|=P|=p|=b/g,
+          yum: /:-d|:d/g,
+          grin: /\^_\^|\^\^|\^-\^/g,
+          sarcastic: /:-\&gt;|:\&gt;|\^o\)/g,
+          cry: /:'\(|='\(|:'-\(|='-\(/g,
+          cool: /8-\)|8\)|B-\)|B\)/g,
+          nerd: /:-B|:B|8-B|8B/g,
+          innocent: /O:-\)|o:-\)|O:\)|o:\)/g,
+          sealed: /:-X|:X|=X|=-X/g,
+          footinmouth: /:-!|:!/g,
+          embarrassed: /:-\[|:\[|=\[|=-\[/g,
+          crazy: /%-\)|%\)/g,
+          confused: /:-S|:S|:-s|:s|%-\(|%\(|X-\(|X\(/g,
+          moneymouth: /:-\$|:\$|=\$|=-\$/g,
+          heart: /\(L\)|\(l\)/g,
+          thumbsup: /\(Y\)|\(y\)/g,
+          thumbsdown: /\(N\)|\(n\)/g,
+          "not-amused": /-.-\"|-.-|-_-\"|-_-/g,
+          "mini-smile": /c:|C:|c-:|C-:/g,
+          "mini-frown": /:c|:C|:-c|:-C/g,
+          content: /:j|:J/g,
+          hearteyes: /\&lt;3/g
+          };
+
+          var emoticHTML = "<span class='emoticon $emotic'></span>";
+
+          var injectEmoticons = function(text) {
+              for(var emotic in patterns) {
+                text = text.replace(patterns[emotic],emoticHTML.replace("$emotic", "emoticon-" + emotic));
+              }
+              return text;
+          }
+          // TITLE notifications
+          var hidden
+          , change
+          , vis = {
+              hidden: "visibilitychange",
+              mozHidden: "mozvisibilitychange",
+              webkitHidden: "webkitvisibilitychange",
+              msHidden: "msvisibilitychange",
+              oHidden: "ovisibilitychange" /* not currently supported */
+          };
+          for (var hidden in vis) {
+              if (vis.hasOwnProperty(hidden) && hidden in document) {
+                  change = vis[hidden];
+                  break;
+              }
+          }
+
+          if (change) {
+            document.addEventListener(change, onchange);
+          } else if (/*@cc_on!@*/false) { // IE 9 and lower
+            document.onfocusin = document.onfocusout = onchange
+          } else {
+            window.onfocus = window.onblur = onchange;
+          }
+
+          function onchange (evt) {
+            var body = document.body;
+            evt = evt || window.event;
+            if (evt.type == "focus" || evt.type == "focusin") {
+                windowStatus = "visible";
+            } else if (evt.type == "blur" || evt.type == "focusout") {
+                windowStatus = "hidden";
+            } else {
+                windowStatus = this[hidden] ? "hidden" : "visible";
+            }
+            if(windowStatus == "visible" && afkDeliveredMessages) {
+                afkDeliveredMessages = 0;
+                updateTitle();
+            }
+            if (windowStatus == "visible") {
+            focusInput();
+            }
+          }
+
+          function focusInput() {
+            $(".chat-input input.text").focus();
+          }
+
+          });
+          <{{!}}/script>
+      <div class="wrap">
+          <header>
+              <div class="dropdown dropdown-status">
+                  <i></i><a class="selected available" href="#"><b></b>available</a>
+                  <div class="dropdown-options">
+                      <div class="triangle"></div>
+                      <div class="list">
+                          <a class="option status available current" href="#" data-status="available"><b></b>available</a>
+                          <a class="option status away " href="#" data-status="away"><b></b>away</a>
+                          <a class="option status busy " href="#" data-status="busy"><b></b>busy</a>
+                          <a class="option logout" href="/logout">Sign Out</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="dropdown dropdown-room">
+                  <i></i><a class="selected" href="#">Setting</a>
+                  <div class="dropdown-options" style="display: none;">
+                      <div class="triangle"></div>
+                      <!-- <form action="/" method="POST">
+                          <a class="option create-room" href="#">Create a room</a>
+                          <input type="text" class="text" style="display: none" placeholder="Name of your room" value="" name="room_name">
+                      </form> -->
+                      <div class="list">
+                        <a class="option current" href="/">log out</a>
+                      </div>
+              </div>
+                </div><!-- .dropdown-room -->
+
+          </header>
+          <sidebar>
+              <div class="online">
+                  <h4 class="inner-padding">ONLINE</h4>
+                  <div class="people">
+                      <a class="available" data-provider="facebook" data-username="{{porn_name public_key}}" href="#"><b></b>{{porn_name public_key}}</a>
+                  </div><!-- .people -->
+              </div><!-- .online -->
+              <a class="sidebar-open-source" target="_blank" href="https://github.com/gravityonmars/Balloons.IO">get the code from github</a>
+          </sidebar>
+          <div class="content" role="main">
+              <div class="chat"><!-- chat-content-->
+                  <div class="history"><!--historical submits--></div>
+                  <div class="current"><!--current submits-->
+                      <div class="notice" data-user="{{porn_name public_key}}">
+                          <span class="date">5:51 PM</span> {{porn_name public_key}} has joined the room.
+                      </div>
+
+                      <div class="chat-box" data-type="chat" data-provider="facebook" data-user="">
+                          <div class="avatar avatar-facebook"><img src=""></a>
+                          </div>
+                          <div class="avatar avatar-facebook">
+                              <img src="#">
+                              <a target="_blank" href="#"></a>
+                          </div>
+                          <h5>{{porn_name public_key}}</h5>
+                          {{#each messages}}
+                          <p><span class="date">6:25 AM</span>{{decrypt payload sender recipient}}</p>
+
+                          {{/each}}
+                      </div>
+                  </div>
+              </div><!-- .chat -->
+              <div class="line-chat"></div>
+              <div class="line-chat second"></div>
+              <div class="chat-input">
+                  <input type="text" class="text" value="" placeholder="Your Message" name="the-message" id="the-message"><!-- .chat-input-->
+              </div>
+          </div>
+          <p id="encrypted-message" style="display:none;">Message goes here</p>
+      </div>
+   <!--   <p>All Messages from {{public_key}}</p>
+    
+    <ul id="message-list">
+        {{#each messages}}
+            <li>{{decrypt payload sender recipient}}</li>
+        {{/each}}
+    </ul>
+    
+    <p>Current Private Key {{private_key}}</p>
+    <p>Private Key Hash {{private_key_hash}}</p>
+
+    <form class="form-inline">
+      <label>Send Message</label>
+      <textarea id="the-message" name="the-message">This is a test message.</textarea>
+      <button id="send-message" class="btn">
+        <i class="icon-camera"></i>
+      </button>
+    </form>
+    
+    <p id="encrypted-message">Message goes here</p> -->
+  </script>
+  
+  <!-- Javascript for backbone and client side stuff -->
+  <script src="lib/jquery-1.7.1.min.js"></script>
+  <script src="lib/underscore-min.js"></script>
+  <script src="lib/backbone-min.js"></script>
+  <script src="lib/handlebars.js"></script>
+  <script src="lib/porn_name.js"></script>
+  <script src="lib/fancy-box/jquery.fancybox.pack.js"></script>
+  <!-- Elliptic curve Diffie–Hellman (ECDH) javascript -->
+  <script src="ecdh/jsbn.js"></script>
+  <script src="ecdh/jsbn2.js"></script>
+  <script src="ecdh/prng4.js"></script>
+  <script src="ecdh/rng.js"></script>
+  <script src="ecdh/ec.js"></script>
+  <script src="ecdh/sec.js"></script>
+  <script src="ecdh/aes.js"></script>
+  <script src="ecdh/mnemonic.js"></script>
+  <script src="ecdh/crypto.js"></script>
+  <script src="ecdh/sha256.js"></script>
+  <script src="ecdh/ecdh.js"></script>
+  
+  <!-- Backbone model, routes and views -->
+  <script src="app/app.js"></script>
+  <script src="app/models.js"></script>
+  <script src="app/views.js"></script>
+  <script src="app/routes.js"></script>
+  <script src="app/helpers.js"></script>
+ 
+  <script>
     App.initialize();
-</script>
+  </script>
 
 </body>
 </html>
